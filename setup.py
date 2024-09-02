@@ -4,20 +4,20 @@ import os
 from setuptools import setup, Extension
 
 SOURCES = ['src/py_minizip.c', 'src/py_miniunz.c',
-           'zlib-1.2.11/contrib/minizip/zip.c', 'zlib-1.2.11/contrib/minizip/unzip.c', 'zlib-1.2.11/contrib/minizip/ioapi.c',
-           'zlib-1.2.11/adler32.c', 'zlib-1.2.11/compress.c', 'zlib-1.2.11/crc32.c', 'zlib-1.2.11/deflate.c',
-           'zlib-1.2.11/infback.c', 'zlib-1.2.11/inffast.c', 'zlib-1.2.11/inflate.c',
-           'zlib-1.2.11/inftrees.c', 'zlib-1.2.11/trees.c', 'zlib-1.2.11/uncompr.c', 'zlib-1.2.11/zutil.c']
+           'zlib-src/zlib/contrib/minizip/zip.c', 'zlib-src/zlib/contrib/minizip/unzip.c', 'zlib-src/zlib/contrib/minizip/ioapi.c',
+           'zlib-src/zlib/adler32.c', 'zlib-src/zlib/compress.c', 'zlib-src/zlib/crc32.c', 'zlib-src/zlib/deflate.c',
+           'zlib-src/zlib/infback.c', 'zlib-src/zlib/inffast.c', 'zlib-src/zlib/inflate.c',
+           'zlib-src/zlib/inftrees.c', 'zlib-src/zlib/trees.c', 'zlib-src/zlib/uncompr.c', 'zlib-src/zlib/zutil.c']
 
 if 'win32' in sys.platform:
-    SOURCES.append('zlib-1.2.11/contrib/minizip/iowin32.c')
+    SOURCES.append('zlib-src/zlib/contrib/minizip/iowin32.c')
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
     name = 'pyminizip',
-    version = '0.2.6',
+    version = '0.2.7',
     description = 'A minizip wrapper - To create a password encrypted zip file in python.',
     author='Shin Aoyama',
     author_email = "smihica@gmail.com",
@@ -39,7 +39,7 @@ setup(
     ext_modules=[
         Extension(name="pyminizip",
                   sources=SOURCES,
-                  include_dirs=['src','zlib-1.2.11','zlib-1.2.11/contrib/minizip'],
+                  include_dirs=['src','zlib-src/zlib','zlib-src/zlib/contrib/minizip'],
                   )
         ],
     long_description = read('README.md'),
